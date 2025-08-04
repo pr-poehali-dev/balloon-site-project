@@ -246,7 +246,14 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-fredoka text-balloon-yellow mb-4">🎈 БалунМаг</h3>
+          <div className="flex justify-center items-center gap-3 mb-4">
+            <img 
+              src="https://cdn.poehali.dev/files/57f43d34-1b18-4274-a8cb-38a973ad4539.jpg" 
+              alt="COLOR Logo"
+              className="h-10 w-auto object-contain"
+            />
+            <h3 className="text-2xl font-fredoka text-balloon-yellow">COLOR</h3>
+          </div>
           <p className="text-gray-300 mb-4">Делаем каждый день праздничным!</p>
           <div className="flex justify-center gap-6">
             <a href="#" className="text-balloon-blue hover:text-balloon-blue/80 transition-colors">
@@ -259,7 +266,7 @@ const Index = () => {
               <Icon name="MessageCircle" size={24} />
             </a>
           </div>
-          <p className="text-gray-500 text-sm mt-4">© 2024 БалунМаг. Все права защищены.</p>
+          <p className="text-gray-500 text-sm mt-4">© 2024 COLOR. Все права защищены.</p>
         </div>
       </footer>
 
