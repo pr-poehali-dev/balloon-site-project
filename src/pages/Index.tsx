@@ -52,7 +52,14 @@ const Index = () => {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-fredoka text-balloon-red">🎈 БалунМаг</h1>
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://cdn.poehali.dev/files/57f43d34-1b18-4274-a8cb-38a973ad4539.jpg" 
+                alt="COLOR Logo"
+                className="h-12 w-auto object-contain"
+              />
+              <h1 className="text-2xl font-fredoka text-balloon-red">COLOR</h1>
+            </div>
             <div className="flex items-center gap-6">
               <a href="#home" className="hover:text-balloon-red transition-colors">Главная</a>
               <a href="#catalog" className="hover:text-balloon-blue transition-colors">Каталог</a>
