@@ -6,11 +6,18 @@ import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import { useCart } from "@/hooks/useCart";
 import Cart from "@/components/Cart";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
 
 const Index = () => {
   const cart = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  const heroAnimation = useScrollAnimation();
+  const catalogAnimation = useScrollAnimation();
+  const deliveryAnimation = useScrollAnimation();
+  const contactsAnimation = useScrollAnimation();
+  const { elementRef: productsRef, visibleItems: visibleProducts } = useStaggeredAnimation(3, 200);
 
   const balloonProducts = [
     {
@@ -71,19 +78,25 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="py-20 text-center">
+      <section id="home" className="py-20 text-center" ref={heroAnimation.elementRef}>
         <div className="container mx-auto px-4">
-          <h1 className="text-6xl font-fredoka text-balloon-red mb-6 animate-bounce">
+          <h1 className={`text-6xl font-fredoka text-balloon-red mb-6 transition-all duration-1000 ${
+            heroAnimation.isVisible ? 'animate-fade-in-down animate-bounce-gentle' : 'opacity-0 translate-y-10'
+          }`}>
             Праздник начинается с нас! 🎉
           </h1>
-          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className={`text-xl text-gray-700 mb-8 max-w-2xl mx-auto transition-all duration-1000 delay-300 ${
+            heroAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+          }`}>
             Яркие надувные шарики для любого торжества. Создаем настроение и дарим радость уже 10 лет!
           </p>
-          <div className="flex justify-center gap-4">
-            <Button size="lg" className="bg-balloon-red hover:bg-balloon-red/90 text-white font-semibold px-8">
+          <div className={`flex justify-center gap-4 transition-all duration-1000 delay-500 ${
+            heroAnimation.isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'
+          }`}>
+            <Button size="lg" className="bg-balloon-red hover:bg-balloon-red/90 text-white font-semibold px-8 hover:scale-105 transition-transform">
               Выбрать шарики
             </Button>
-            <Button variant="outline" size="lg" className="border-balloon-blue text-balloon-blue hover:bg-balloon-blue/10">
+            <Button variant="outline" size="lg" className="border-balloon-blue text-balloon-blue hover:bg-balloon-blue/10 hover:scale-105 transition-transform">
               Узнать цены
             </Button>
           </div>
@@ -91,14 +104,18 @@ const Index = () => {
       </section>
 
       {/* Catalog Section */}
-      <section id="catalog" className="py-16 bg-white/50">
+      <section id="catalog" className="py-16 bg-white/50" ref={catalogAnimation.elementRef}>
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-fredoka text-center text-balloon-blue mb-12">
+          <h2 className={`text-4xl font-fredoka text-center text-balloon-blue mb-12 transition-all duration-1000 ${
+            catalogAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+          }`}>
             Популярные наборы 🎈
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {balloonProducts.map((product) => (
-              <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-balloon-mint/30">
+          <div className="grid md:grid-cols-3 gap-8" ref={productsRef}>
+            {balloonProducts.map((product, index) => (
+              <Card key={product.id} className={`overflow-hidden hover:shadow-xl transition-all duration-500 hover:scale-105 border-2 border-balloon-mint/30 ${
+                visibleProducts.includes(index) ? 'animate-fade-in-up animate-float' : 'opacity-0 translate-y-10'
+              }`}>
                 <div className="h-48 bg-gradient-to-br from-balloon-yellow/20 to-balloon-blue/20 relative overflow-hidden">
                   <img 
                     src={product.image} 
@@ -129,28 +146,36 @@ const Index = () => {
       </section>
 
       {/* Delivery Section */}
-      <section id="delivery" className="py-16 bg-gradient-to-r from-balloon-mint/20 to-balloon-green/20">
+      <section id="delivery" className="py-16 bg-gradient-to-r from-balloon-mint/20 to-balloon-green/20" ref={deliveryAnimation.elementRef}>
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-fredoka text-center text-balloon-green mb-12">
+          <h2 className={`text-4xl font-fredoka text-center text-balloon-green mb-12 transition-all duration-1000 ${
+            deliveryAnimation.isVisible ? 'animate-fade-in-down' : 'opacity-0 translate-y-10'
+          }`}>
             Быстрая доставка 🚚
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-balloon-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className={`text-center transition-all duration-1000 delay-200 ${
+              deliveryAnimation.isVisible ? 'animate-fade-in-left' : 'opacity-0 -translate-x-10'
+            }`}>
+              <div className="w-20 h-20 bg-balloon-blue/20 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform hover:animate-bounce-gentle">
                 <Icon name="Clock" size={32} className="text-balloon-blue" />
               </div>
               <h3 className="text-xl font-fredoka text-balloon-blue mb-2">За 2 часа</h3>
               <p className="text-gray-600">Экспресс-доставка по городу в течение 2 часов</p>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-balloon-purple/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className={`text-center transition-all duration-1000 delay-400 ${
+              deliveryAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+            }`}>
+              <div className="w-20 h-20 bg-balloon-purple/20 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform hover:animate-bounce-gentle">
                 <Icon name="MapPin" size={32} className="text-balloon-purple" />
               </div>
               <h3 className="text-xl font-fredoka text-balloon-purple mb-2">Везде</h3>
               <p className="text-gray-600">Доставляем в любую точку города и области</p>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-balloon-red/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className={`text-center transition-all duration-1000 delay-600 ${
+              deliveryAnimation.isVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-10'
+            }`}>
+              <div className="w-20 h-20 bg-balloon-red/20 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform hover:animate-bounce-gentle">
                 <Icon name="Shield" size={32} className="text-balloon-red" />
               </div>
               <h3 className="text-xl font-fredoka text-balloon-red mb-2">Гарантия</h3>
@@ -161,13 +186,17 @@ const Index = () => {
       </section>
 
       {/* Contacts Section */}
-      <section id="contacts" className="py-16 bg-white/50">
+      <section id="contacts" className="py-16 bg-white/50" ref={contactsAnimation.elementRef}>
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-fredoka text-center text-balloon-purple mb-12">
+          <h2 className={`text-4xl font-fredoka text-center text-balloon-purple mb-12 transition-all duration-1000 ${
+            contactsAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+          }`}>
             Свяжитесь с нами 📞
           </h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            <div>
+            <div className={`transition-all duration-1000 delay-300 ${
+              contactsAnimation.isVisible ? 'animate-fade-in-left' : 'opacity-0 -translate-x-10'
+            }`}>
               <h3 className="text-2xl font-fredoka text-balloon-blue mb-6">Контактная информация</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -188,7 +217,9 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className={`transition-all duration-1000 delay-500 ${
+              contactsAnimation.isVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-10'
+            }`}>
               <h3 className="text-2xl font-fredoka text-balloon-green mb-6">Напишите нам</h3>
               <form className="space-y-4">
                 <Input placeholder="Ваше имя" className="border-balloon-mint/50 focus:border-balloon-blue" />
