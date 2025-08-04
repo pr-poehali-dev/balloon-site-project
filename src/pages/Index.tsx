@@ -2,14 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
+import { useCart } from "@/hooks/useCart";
+import Cart from "@/components/Cart";
+import { useState } from "react";
 
 const Index = () => {
+  const cart = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const balloonProducts = [
     {
       id: 1,
       name: "Праздничный набор",
       price: "1,200 ₽",
+      priceValue: 1200,
       image: "/img/9ff53636-e00d-4942-904e-87c1a854e866.jpg",
       description: "Яркий набор разноцветных шариков для любого праздника"
     },
@@ -17,6 +25,7 @@ const Index = () => {
       id: 2,
       name: "Сердечки романтик",
       price: "890 ₽",
+      priceValue: 890,
       image: "/img/99296111-c9f8-4cb6-b19e-dc8aa9980288.jpg",
       description: "Нежные шарики-сердечки для особенных моментов"
     },
@@ -24,6 +33,7 @@ const Index = () => {
       id: 3,
       name: "Цифры золотые",
       price: "650 ₽",
+      priceValue: 650,
       image: "/img/a3f5aea6-1167-4c35-aa76-ae4ae5f1b6e7.jpg",
       description: "Золотые шарики-цифры для дня рождения"
     }
@@ -36,11 +46,25 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-fredoka text-balloon-red">🎈 БалунМаг</h1>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-6">
               <a href="#home" className="hover:text-balloon-red transition-colors">Главная</a>
               <a href="#catalog" className="hover:text-balloon-blue transition-colors">Каталог</a>
               <a href="#delivery" className="hover:text-balloon-green transition-colors">Доставка</a>
               <a href="#contacts" className="hover:text-balloon-purple transition-colors">Контакты</a>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsCartOpen(true)}
+                className="relative border-balloon-purple/30 text-balloon-purple hover:bg-balloon-purple/10"
+              >
+                <Icon name="ShoppingCart" size={16} className="mr-2" />
+                Корзина
+                {cart.totalItems > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-balloon-red text-white text-xs px-1.5 py-0.5 min-w-5 h-5 flex items-center justify-center">
+                    {cart.totalItems}
+                  </Badge>
+                )}
+              </Button>
             </div>
           </div>
         </div>
@@ -89,7 +113,10 @@ const Index = () => {
                 <CardContent className="pt-0">
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-balloon-green">{product.price}</span>
-                    <Button className="bg-balloon-purple hover:bg-balloon-purple/90 text-white">
+                    <Button 
+                      onClick={() => cart.addItem(product)}
+                      className="bg-balloon-purple hover:bg-balloon-purple/90 text-white"
+                    >
                       <Icon name="ShoppingCart" size={16} className="mr-2" />
                       Купить
                     </Button>
@@ -197,6 +224,8 @@ const Index = () => {
           <p className="text-gray-500 text-sm mt-4">© 2024 БалунМаг. Все права защищены.</p>
         </div>
       </footer>
+
+      <Cart cart={cart} isOpen={isCartOpen} onOpenChange={setIsCartOpen} />
     </div>
   );
 };
