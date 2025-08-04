@@ -17,7 +17,7 @@ const Index = () => {
   const catalogAnimation = useScrollAnimation();
   const deliveryAnimation = useScrollAnimation();
   const contactsAnimation = useScrollAnimation();
-  const { elementRef: productsRef, visibleItems: visibleProducts } = useStaggeredAnimation(9, 200);
+
 
   const balloonProducts = [
     {
@@ -166,11 +166,9 @@ const Index = () => {
           }`}>
             Популярные наборы 🎈
           </h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6" ref={productsRef}>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
             {balloonProducts.map((product, index) => (
-              <Card key={product.id} className={`overflow-hidden hover:shadow-xl transition-all duration-500 hover:scale-105 border-2 border-balloon-mint/30 ${
-                visibleProducts.includes(index) ? 'animate-fade-in-up animate-float' : 'opacity-0 translate-y-10'
-              }`}>
+              <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-2 border-balloon-mint/30">
                 <div className="h-48 bg-gradient-to-br from-balloon-yellow/20 to-balloon-blue/20 relative overflow-hidden">
                   <img 
                     src={product.image} 
