@@ -17,7 +17,7 @@ const Index = () => {
   const catalogAnimation = useScrollAnimation();
   const deliveryAnimation = useScrollAnimation();
   const contactsAnimation = useScrollAnimation();
-  const { elementRef: productsRef, visibleItems: visibleProducts } = useStaggeredAnimation(3, 200);
+  const { elementRef: productsRef, visibleItems: visibleProducts } = useStaggeredAnimation(9, 200);
 
   const balloonProducts = [
     {
@@ -43,6 +43,54 @@ const Index = () => {
       priceValue: 650,
       image: "/img/a3f5aea6-1167-4c35-aa76-ae4ae5f1b6e7.jpg",
       description: "Золотые шарики-цифры для дня рождения"
+    },
+    {
+      id: 4,
+      name: "Радужная арка",
+      price: "2,500 ₽",
+      priceValue: 2500,
+      image: "/img/fadda1e4-cada-494f-a509-cfc9dc346dfd.jpg",
+      description: "Впечатляющая радужная арка из воздушных шаров"
+    },
+    {
+      id: 5,
+      name: "Звёзды серебро",
+      price: "750 ₽",
+      priceValue: 750,
+      image: "/img/dea182e6-2fb1-432b-b490-e5783f76a0fc.jpg",
+      description: "Элегантные серебряные шары в форме звёзд"
+    },
+    {
+      id: 6,
+      name: "Букет поздравлений",
+      price: "1,450 ₽",
+      priceValue: 1450,
+      image: "/img/6456b344-433d-40b6-b671-8c13440140e9.jpg",
+      description: "Праздничный букет с надписями поздравлений"
+    },
+    {
+      id: 7,
+      name: "Детский микс",
+      price: "980 ₽",
+      priceValue: 980,
+      image: "/img/3f46852e-51a3-4dd3-afb4-c43735f68598.jpg",
+      description: "Весёлые шарики с мультяшными героями"
+    },
+    {
+      id: 8,
+      name: "Свадебный белоснежный",
+      price: "3,200 ₽",
+      priceValue: 3200,
+      image: "/img/9cb12cff-e9cf-4d15-aad5-91f048365c31.jpg",
+      description: "Изысканный набор белых и кремовых шаров для свадьбы"
+    },
+    {
+      id: 9,
+      name: "Хэллоуин мистика",
+      price: "1,100 ₽",
+      priceValue: 1100,
+      image: "/img/ed1ae6a1-44a6-4fde-bb7d-2c8bba24dad2.jpg",
+      description: "Тёмные шары с мистическими узорами"
     }
   ];
 
@@ -118,7 +166,7 @@ const Index = () => {
           }`}>
             Популярные наборы 🎈
           </h2>
-          <div className="grid md:grid-cols-3 gap-8" ref={productsRef}>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6" ref={productsRef}>
             {balloonProducts.map((product, index) => (
               <Card key={product.id} className={`overflow-hidden hover:shadow-xl transition-all duration-500 hover:scale-105 border-2 border-balloon-mint/30 ${
                 visibleProducts.includes(index) ? 'animate-fade-in-up animate-float' : 'opacity-0 translate-y-10'
