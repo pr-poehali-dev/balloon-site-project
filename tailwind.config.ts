@@ -61,7 +61,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				balloon: {
+					red: '#FF6B6B',
+					blue: '#4ECDC4',
+					green: '#96CEB4',
+					yellow: '#FFEAA7',
+					purple: '#A29BFE',
+					turquoise: '#74B9FF',
+					mint: '#81ECEC',
+					coral: '#FD79A8'
 				}
+			},
+			fontFamily: {
+				fredoka: ['Fredoka One', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
