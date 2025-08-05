@@ -185,7 +185,7 @@ const Index = () => {
                     <span className="text-2xl font-bold text-balloon-green">{product.price}</span>
                     <Button 
                       onClick={() => cart.addItem(product)}
-                      className="bg-balloon-purple hover:bg-balloon-purple/90 text-white"
+                      className="bg-balloon-purple hover:bg-balloon-purple/90 active:bg-balloon-purple/80 text-white transition-all duration-200 hover:scale-105 active:scale-95"
                     >
                       <Icon name="ShoppingCart" size={16} className="mr-2" />
                       Купить
