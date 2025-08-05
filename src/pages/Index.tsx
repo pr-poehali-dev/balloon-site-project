@@ -19,6 +19,15 @@ const Index = () => {
   const contactsAnimation = useScrollAnimation();
 
 
+  const categories = [
+    { id: 'all', name: 'Все товары' },
+    { id: 'romantic', name: 'Романтика' },
+    { id: 'birthday', name: 'День рождения' },
+    { id: 'decorations', name: 'Декор' }
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
   const balloonProducts = [
     {
       id: 1,
@@ -26,7 +35,8 @@ const Index = () => {
       price: "1,200 ₽",
       priceValue: 1200,
       image: "/img/9ff53636-e00d-4942-904e-87c1a854e866.jpg",
-      description: "Яркий набор разноцветных шариков для любого праздника"
+      description: "Яркий набор разноцветных шариков для любого праздника",
+      category: "birthday"
     },
     {
       id: 2,
@@ -34,7 +44,8 @@ const Index = () => {
       price: "890 ₽",
       priceValue: 890,
       image: "/img/99296111-c9f8-4cb6-b19e-dc8aa9980288.jpg",
-      description: "Нежные шарики-сердечки для особенных моментов"
+      description: "Нежные шарики-сердечки для особенных моментов",
+      category: "romantic"
     },
     {
       id: 3,
@@ -42,7 +53,8 @@ const Index = () => {
       price: "250 ₽",
       priceValue: 250,
       image: "https://cdn.poehali.dev/files/8b359041-2954-4598-b174-7efbecb60650.jpg",
-      description: "10 фольгированных сердец, грузик, транспортировочный пакет. Размер 800мм на 1500мм. Идеально для влюбленных!"
+      description: "10 фольгированных сердец, грузик, транспортировочный пакет. Размер 800мм на 1500мм. Идеально для влюбленных!",
+      category: "romantic"
     },
     {
       id: 4,
@@ -50,15 +62,17 @@ const Index = () => {
       price: "650 ₽",
       priceValue: 650,
       image: "/img/a3f5aea6-1167-4c35-aa76-ae4ae5f1b6e7.jpg",
-      description: "Золотые шарики-цифры для дня рождения"
+      description: "Золотые шарики-цифры для дня рождения",
+      category: "birthday"
     },
     {
-      id: 4,
+      id: 5,
       name: "Радужная арка",
       price: "2,500 ₽",
       priceValue: 2500,
       image: "/img/fadda1e4-cada-494f-a509-cfc9dc346dfd.jpg",
-      description: "Впечатляющая радужная арка из воздушных шаров"
+      description: "Впечатляющая радужная арка из воздушных шаров",
+      category: "decorations"
     },
     {
       id: 5,
@@ -169,13 +183,34 @@ const Index = () => {
       {/* Catalog Section */}
       <section id="catalog" className="py-16 bg-white/50" ref={catalogAnimation.elementRef}>
         <div className="container mx-auto px-4">
-          <h2 className={`text-4xl font-fredoka text-center text-balloon-blue mb-12 transition-all duration-1000 ${
+          <h2 className={`text-4xl font-fredoka text-center text-balloon-blue mb-8 transition-all duration-1000 ${
             catalogAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
           }`}>
             Популярные наборы 🎈
           </h2>
+          
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? "default" : "outline"}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  selectedCategory === category.id 
+                    ? 'bg-balloon-purple text-white hover:bg-balloon-purple/90 scale-105 shadow-lg' 
+                    : 'border-balloon-purple text-balloon-purple hover:bg-balloon-purple hover:text-white hover:scale-105'
+                }`}
+              >
+                {category.name}
+              </Button>
+            ))}
+          </div>
+          
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {balloonProducts.map((product, index) => (
+            {balloonProducts
+              .filter(product => selectedCategory === 'all' || product.category === selectedCategory)
+              .map((product, index) => (
               <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-2 border-balloon-mint/30">
                 <div className="h-48 bg-gradient-to-br from-balloon-yellow/20 to-balloon-blue/20 relative overflow-hidden">
                   <img 
