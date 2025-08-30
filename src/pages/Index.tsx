@@ -294,39 +294,137 @@ const Index = () => {
               contactsAnimation.isVisible ? 'animate-fade-in-left' : 'opacity-0 -translate-x-10'
             }`}>
               <h3 className="text-2xl font-fredoka text-balloon-blue mb-6">Контактная информация</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Icon name="Phone" size={20} className="text-balloon-red" />
-                  <span className="text-lg">+7 (999) 123-45-67</span>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-balloon-red/20 rounded-full flex items-center justify-center">
+                    <Icon name="Phone" size={20} className="text-balloon-red" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-balloon-red">Телефон</p>
+                    <p className="text-lg text-gray-800">+7 (999) 123-45-67</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Icon name="Mail" size={20} className="text-balloon-blue" />
-                  <span className="text-lg">info@balunmag.ru</span>
+                <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-balloon-blue/20 rounded-full flex items-center justify-center">
+                    <Icon name="Mail" size={20} className="text-balloon-blue" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-balloon-blue">Email</p>
+                    <p className="text-lg text-gray-800">info@balunmag.ru</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Icon name="MapPin" size={20} className="text-balloon-green" />
-                  <span className="text-lg">ул. Праздничная, 123, Москва</span>
+                <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-balloon-green/20 rounded-full flex items-center justify-center">
+                    <Icon name="MapPin" size={20} className="text-balloon-green" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-balloon-green">Адрес</p>
+                    <p className="text-lg text-gray-800">ул. Праздничная, 123, Москва</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Icon name="Clock" size={20} className="text-balloon-purple" />
-                  <span className="text-lg">Работаем 24/7</span>
+                <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-balloon-purple/20 rounded-full flex items-center justify-center">
+                    <Icon name="Clock" size={20} className="text-balloon-purple" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-balloon-purple">Режим работы</p>
+                    <p className="text-lg text-gray-800">Работаем 24/7</p>
+                  </div>
+                </div>
+                
+                {/* Social Links */}
+                <div className="mt-8">
+                  <h4 className="text-lg font-fredoka text-balloon-blue mb-4">Мы в соцсетях</h4>
+                  <div className="flex gap-4">
+                    <a href="#" className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                      <Icon name="Facebook" size={20} className="text-blue-600" />
+                    </a>
+                    <a href="#" className="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                      <Icon name="Instagram" size={20} className="text-pink-600" />
+                    </a>
+                    <a href="#" className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                      <Icon name="MessageCircle" size={20} className="text-green-600" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
             <div className={`transition-all duration-1000 delay-500 ${
               contactsAnimation.isVisible ? 'animate-fade-in-right' : 'opacity-0 translate-x-10'
             }`}>
-              <h3 className="text-2xl font-fredoka text-balloon-green mb-6">Напишите нам</h3>
-              <form className="space-y-4">
-                <Input placeholder="Ваше имя" className="border-balloon-mint/50 focus:border-balloon-blue" />
-                <Input type="email" placeholder="Email" className="border-balloon-mint/50 focus:border-balloon-blue" />
-                <Input placeholder="Телефон" className="border-balloon-mint/50 focus:border-balloon-blue" />
-                <Textarea placeholder="Ваше сообщение" className="border-balloon-mint/50 focus:border-balloon-blue min-h-24" />
-                <Button className="w-full bg-balloon-red hover:bg-balloon-red/90 text-white font-semibold">
-                  <Icon name="Send" size={16} className="mr-2" />
-                  Отправить сообщение
-                </Button>
-              </form>
+              <Card className="p-6 bg-white/80 border-2 border-balloon-mint/30 shadow-lg">
+                <h3 className="text-2xl font-fredoka text-balloon-green mb-6">Напишите нам 💌</h3>
+                <form className="space-y-5">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Ваше имя</label>
+                    <Input 
+                      placeholder="Введите ваше имя" 
+                      className="border-balloon-mint/50 focus:border-balloon-blue focus:ring-2 focus:ring-balloon-blue/20" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Email</label>
+                    <Input 
+                      type="email" 
+                      placeholder="example@mail.ru" 
+                      className="border-balloon-mint/50 focus:border-balloon-blue focus:ring-2 focus:ring-balloon-blue/20" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Телефон</label>
+                    <Input 
+                      placeholder="+7 (999) 123-45-67" 
+                      className="border-balloon-mint/50 focus:border-balloon-blue focus:ring-2 focus:ring-balloon-blue/20" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Ваше сообщение</label>
+                    <Textarea 
+                      placeholder="Расскажите, что вас интересует. Мы поможем подобрать идеальные шарики для вашего праздника!" 
+                      className="border-balloon-mint/50 focus:border-balloon-blue focus:ring-2 focus:ring-balloon-blue/20 min-h-[120px] resize-none" 
+                    />
+                  </div>
+                  <Button className="w-full bg-gradient-to-r from-balloon-red to-balloon-purple hover:from-balloon-red/90 hover:to-balloon-purple/90 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]">
+                    <Icon name="Send" size={16} className="mr-2" />
+                    Отправить сообщение
+                  </Button>
+                </form>
+                
+                {/* Quick Contact */}
+                <div className="mt-6 pt-6 border-t border-balloon-mint/30">
+                  <p className="text-sm text-gray-600 text-center mb-3">Или свяжитесь с нами быстро:</p>
+                  <div className="flex justify-center gap-3">
+                    <Button variant="outline" size="sm" className="border-balloon-blue text-balloon-blue hover:bg-balloon-blue hover:text-white">
+                      <Icon name="Phone" size={14} className="mr-1" />
+                      Позвонить
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-balloon-green text-balloon-green hover:bg-balloon-green hover:text-white">
+                      <Icon name="MessageCircle" size={14} className="mr-1" />
+                      WhatsApp
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+          
+          {/* Map Section */}
+          <div className={`mt-12 transition-all duration-1000 delay-700 ${
+            contactsAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+          }`}>
+            <div className="bg-white/70 rounded-xl p-6 shadow-lg">
+              <h3 className="text-xl font-fredoka text-balloon-purple mb-4 text-center">Наш адрес на карте 🗺️</h3>
+              <div className="aspect-video bg-gradient-to-br from-balloon-mint/20 to-balloon-blue/20 rounded-lg flex items-center justify-center border-2 border-balloon-mint/30">
+                <div className="text-center">
+                  <Icon name="MapPin" size={48} className="text-balloon-green mx-auto mb-2" />
+                  <p className="text-lg font-medium text-gray-700">ул. Праздничная, 123</p>
+                  <p className="text-gray-600">Москва, Россия</p>
+                  <Button variant="outline" className="mt-3 border-balloon-green text-balloon-green hover:bg-balloon-green hover:text-white">
+                    <Icon name="Navigation" size={14} className="mr-2" />
+                    Построить маршрут
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
