@@ -313,15 +313,7 @@ const Index = () => {
                     <p className="text-lg text-gray-800">info@balunmag.ru</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-12 h-12 bg-balloon-green/20 rounded-full flex items-center justify-center">
-                    <Icon name="MapPin" size={20} className="text-balloon-green" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-balloon-green">Адрес</p>
-                    <p className="text-lg text-gray-800">ул. Праздничная, 123, Москва</p>
-                  </div>
-                </div>
+
                 <div className="flex items-center gap-4 p-4 bg-white/70 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-12 h-12 bg-balloon-purple/20 rounded-full flex items-center justify-center">
                     <Icon name="Clock" size={20} className="text-balloon-purple" />
@@ -408,25 +400,7 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Map Section */}
-          <div className={`mt-12 transition-all duration-1000 delay-700 ${
-            contactsAnimation.isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
-          }`}>
-            <div className="bg-white/70 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-fredoka text-balloon-purple mb-4 text-center">Наш адрес на карте 🗺️</h3>
-              <div className="aspect-video bg-gradient-to-br from-balloon-mint/20 to-balloon-blue/20 rounded-lg flex items-center justify-center border-2 border-balloon-mint/30">
-                <div className="text-center">
-                  <Icon name="MapPin" size={48} className="text-balloon-green mx-auto mb-2" />
-                  <p className="text-lg font-medium text-gray-700">ул. Праздничная, 123</p>
-                  <p className="text-gray-600">Москва, Россия</p>
-                  <Button variant="outline" className="mt-3 border-balloon-green text-balloon-green hover:bg-balloon-green hover:text-white">
-                    <Icon name="Navigation" size={14} className="mr-2" />
-                    Построить маршрут
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </section>
 
